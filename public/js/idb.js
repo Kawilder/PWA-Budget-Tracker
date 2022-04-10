@@ -4,7 +4,7 @@ const request = indexedDB.open('budget_tracker',1);
 
 request.onupgradeneeded = function (event) {
   const db = event.target.result;
-  db.createObjectStore('new_budget',{autoIncrement: true});
+  db.createObjectStore('new_transaction',{autoIncrement: true});
 };
 
 request.onsuccess = function (event) {
@@ -20,16 +20,16 @@ request.onerror = function (event) {
 };
 
 const saveRecord = record => {
-  const transaction = db.transaction(['new_budget','readwrite']);
-  const budgetObjectStore = transaction.objectStore('new_budget');
+  const transaction = db.transaction(['new_transaction','readwrite']);
+  const transactionObjectStore = transaction.objectStore('new_transaction');
 
-  budgetObjectStore.add(record);
+  transactionObjectStore.add(record);
 };
 
 const uploadTransaction= () => {
-  const transaction = db.transaction(['new_budget'],'readwrite');    
-  const budgetObjectStore = transaction.objectStore('new_budget');
-  const getAll = budgetObjectStore.getAll();
+  const transaction = db.transaction(['new_transaction'],'readwrite');    
+  const transactionObjectStore = transaction.objectStore('new_transaction');
+  const getAll = transactionObjectStore.getAll();
 
   getAll.onsuccess = function () {
     if (getAll.result.length >0) {
