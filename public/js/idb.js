@@ -27,7 +27,7 @@ const saveRecord = record => {
 };
 
 const uploadTransaction= () => {
-  const transaction = db.transaction(['new_transaction'],'readwrite');    
+  const transaction = db.transaction(['new_transaction','readwrite']);    
   const transactionObjectStore = transaction.objectStore('new_transaction');
   const getAll = transactionObjectStore.getAll();
 
