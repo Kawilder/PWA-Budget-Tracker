@@ -19,14 +19,14 @@ request.onerror = function (event) {
   console.log(event.target.errorCode);
 };
 
-function saveRecord(record) {
+const saveRecord = record => {
   const transaction = db.transaction(['new_budget','readwrite']);
   const budgetObjectStore = transaction.objectStore('new_budget');
 
   budgetObjectStore.add(record);
 };
 
-function uploadTransaction() {
+const uploadTransaction= () => {
   const transaction = db.transaction(['new_budget'],'readwrite');    
   const budgetObjectStore = transaction.objectStore('new_budget');
   const getAll = budgetObjectStore.getAll();
