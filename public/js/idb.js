@@ -46,9 +46,9 @@ const uploadTransaction= () => {
         if (serverResponse.message) {
           throw new Error(serverResponse);
         }
-        const transaction = db.transaction(['new_budget','readwrite']);
-        const budgetObjectStore = transaction.objectStore('new_budget');
-        budgetObjectStore.clear();
+        const transaction = db.transaction(['new_transaction','readwrite']);
+        const transactionObjectStore = transaction.objectStore('new_transaction');
+        transactionObjectStore.clear();
 
         alert('All saved transactions has been submitted');
       })
